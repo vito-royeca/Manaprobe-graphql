@@ -40,7 +40,7 @@ export class CardsUtilities {
     }
 
     formatCard = (card: MGCard, set: MGSet, language = "en"): MGCard => {
-        // this.updateImageURLs(card, set, language);
+        this.updateImageURLs(card, set, language);
 
         card.displayManaCost = card.faces !== undefined && card.faces !== null && card.faces.length > 0 ?
             card.faces.map(face => face.manaCost ?? " ").join(" // ") :
@@ -134,23 +134,23 @@ export class CardsUtilities {
     }
 
     updateImageURLs = (card: MGCard, set: MGSet, language = "en"): MGCard => {
-        if (card.newId !== null && card.newId !== undefined) {
-            const soonUrl    = "/images/cards/soon.jpg"
-            const array = card.newId.split("_")
-            const number = array.length == 3 ? array[2] : `${array[2]}_${array[3]}`;
+        // if (card.newId !== null && card.newId !== undefined) {
+        //     const soonUrl    = "/images/cards/soon.jpg"
+        //     const array = card.newId.split("_")
+        //     const number = array.length == 3 ? array[2] : `${array[2]}_${array[3]}`;
 
             
             
-            card.artCropUrl = `${process.env.IMAGE_SERVER_URL}/images/cards/${set.code}/${language}/${number}/art_crop.jpg`;
-            card.normalUrl = `${process.env.IMAGE_SERVER_URL}/images/cards/${set.code}/${language}/${number}/normal.jpg`;
-            card.pngUrl = `${process.env.IMAGE_SERVER_URL}/images/cards/${set.code}/${language}/${number}/png.png`;
-        }
-
-        // if (card.faces !== undefined && card.faces !== null) {
-
-        // } else {
-
+        //     card.artCropUrl = `${process.env.IMAGE_SERVER_URL}/images/cards/${set.code}/${language}/${number}/art_crop.jpg`;
+        //     card.normalUrl = `${process.env.IMAGE_SERVER_URL}/images/cards/${set.code}/${language}/${number}/normal.jpg`;
+        //     card.pngUrl = `${process.env.IMAGE_SERVER_URL}/images/cards/${set.code}/${language}/${number}/png.png`;
         // }
+
+        if (card.faces !== undefined && card.faces !== null&& card.faces.length > 0) {
+            card.artCropUrl = card.faces[0].artCropUrl;
+            card.normalUrl = card.faces[0].normalUrl;
+            card.pngUrl = card.faces[0].pngUrl;
+        }
 
         return card;
     }
