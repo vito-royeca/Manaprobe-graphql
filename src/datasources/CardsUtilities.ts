@@ -90,6 +90,10 @@ export class CardsUtilities {
             }
         }
 
+        if (card.colors === undefined || card.colors === null) {
+            card.colors = [];
+        }
+
         if (card.faces !== undefined && card.faces !== null) {
             card.faces.forEach((face, _) => {
                 this.formatCard(face, set, language);
@@ -146,10 +150,16 @@ export class CardsUtilities {
         //     card.pngUrl = `${process.env.IMAGE_SERVER_URL}/images/cards/${set.code}/${language}/${number}/png.png`;
         // }
 
-        if (card.faces !== undefined && card.faces !== null&& card.faces.length > 0) {
-            card.artCropUrl = card.faces[0].artCropUrl;
-            card.normalUrl = card.faces[0].normalUrl;
-            card.pngUrl = card.faces[0].pngUrl;
+        if (card.faces !== undefined && card.faces !== null && card.faces.length > 0) {
+            if (card.faces[0].artCropUrl !== null && card.faces[0].artCropUrl !== undefined) {
+                card.artCropUrl = card.faces[0].artCropUrl;
+            }
+            if (card.faces[0].normalUrl !== null && card.faces[0].normalUrl !== undefined) {
+                card.normalUrl = card.faces[0].normalUrl;
+            }
+            if (card.faces[0].pngUrl !== null && card.faces[0].pngUrl !== undefined) {
+                card.pngUrl = card.faces[0].pngUrl;
+            }
         }
 
         return card;
