@@ -1,14 +1,21 @@
 import { ApolloServer } from "@apollo/server";
-import { 
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import {
     ApolloServerPluginLandingPageLocalDefault,
     ApolloServerPluginLandingPageProductionDefault
 } from '@apollo/server/plugin/landingPage/default';
 import { startStandaloneServer } from "@apollo/server/standalone";
 
 import dotenv from "dotenv";
-import { readFileSync } from "node:fs";
-import path from "node:path";
+import { expressMiddleware } from '@as-integrations/express5';
 import { gql } from "graphql-tag";
+import path from "node:path";
+import { readFileSync } from "node:fs";
+import cors from 'cors';
+import express from 'express';
+import http from 'http';
+import https from 'https';
+import fs from 'fs';
 
 import { CardsSQLDataSource } from "./datasources/CardsSQLDataSource";
 import { CardsRESTDataSource } from "./datasources/CardsRESTDataSource";
@@ -19,11 +26,8 @@ import { SetsSQLDataSource } from "./datasources/SetsSQLDataSource";
 
 dotenv.config();
 
-const typeDefs = gql(
-    readFileSync(path.resolve(__dirname, "./graphql/schema.graphql"), {
-        encoding: "utf-8",
-    })
-);
+const APOLLO_SERVER_PORT = 4000;
+const HTTPS_SERVER_PORT = 3443;
 
 function createDataSources(cache: any) {
     if (process.env.DATASOURCE_TYPE === "SQL") {
@@ -50,7 +54,13 @@ function createDataSources(cache: any) {
     }
 }
 
-async function startApolloServer() {
+async function createApolloServer() {
+    const typeDefs = gql(
+        readFileSync(path.resolve(__dirname, "./graphql/schema.graphql"), {
+            encoding: "utf-8",
+        })
+    );
+
     const server = new ApolloServer({
         typeDefs,
         resolvers,
@@ -58,11 +68,11 @@ async function startApolloServer() {
         plugins: [
             // Install a landing page plugin based on NODE_ENV
             process.env.NODE_ENV === 'production'
-            ? ApolloServerPluginLandingPageProductionDefault({
-                graphRef: 'my-graph-id@my-graph-variant',
-                footer: false,
+                ? ApolloServerPluginLandingPageProductionDefault({
+                    graphRef: 'my-graph-id@my-graph-variant',
+                    footer: true,
                 })
-            : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
+                : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
         ],
     });
 
@@ -75,13 +85,57 @@ async function startApolloServer() {
                 dataSources
             };
         },
-        listen: { port: Number(process.env.PORT) || 4000 },
+        listen: { port: APOLLO_SERVER_PORT },
     });
-  
-    console.log(`
-        🚀  Server is running!
-        📭  Query at ${url}
-    `);
+
+    return server;
 }
 
-startApolloServer();
+async function startExpressServer() {
+    const configurations = {
+        production: {
+            ssl: true,
+            hostname: process.env.NODE_ENV || 'localhost'
+        },
+        development: {
+            ssl: false,
+            hostname: 'localhost'
+        },
+    };
+    const environment = process.env.NODE_ENV || 'production';
+    const config = configurations[environment as keyof typeof configurations];
+
+    const app = express();
+
+    const server = await createApolloServer();
+    app.use(
+        '/graphql',
+        cors<cors.CorsRequest>(),
+        express.json(),
+        expressMiddleware(server),
+    );
+
+    // Create the HTTPS or HTTP server, per configuration
+    let httpServer;
+    if (config.ssl) {
+        // Assumes certificates are in a .ssl folder off of the package root.
+        // Make sure these files are secured.
+        httpServer = https.createServer(
+            {
+                key: fs.readFileSync(`./ssl/manaprobe_com.key`),
+                cert: fs.readFileSync(`./ssl/manaprobe_com.crt`),
+            },
+            app,
+        );
+    } else {
+        httpServer = http.createServer(app);
+    }
+
+    await new Promise<void>((resolve) => httpServer.listen({
+        port: HTTPS_SERVER_PORT
+    }, resolve));
+
+    console.log('🚀 Server ready at', `http${config.ssl ? 's' : ''}://${config.hostname}:${HTTPS_SERVER_PORT}/graphql`);
+}
+
+startExpressServer();

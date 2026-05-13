@@ -3,7 +3,7 @@ Description=ManaGuide-graphql systemd service
 After=network-online.target
 
 [Service]
-ExecStart=cd /path/to/managuide-graphql && /usr/bin/npm run dev
+ExecStart=/usr/bin/npm run dev
 WorkingDirectory=/path/to/managuide-graphql
 RestartSec=10
 Restart=always
