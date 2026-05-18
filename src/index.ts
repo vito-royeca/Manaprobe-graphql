@@ -36,7 +36,11 @@ function createDataSources(cache: any) {
         const knexConfig = {
             client: "pg",
             // postgres://[user]:[password]@[host]:[port]/[database]
-            connection: process.env.PG_CONNECTION_STRING
+            connection: process.env.PG_CONNECTION_STRING,
+            pool: {
+                maxConnectionLifetimeMillis: 5 * 60_000, // 5 minutes
+                maxConnectionLifetimeJitterMillis: 60_000, // up to +1 minute random
+            },
         };
         return {
             dataSources: {
