@@ -40,6 +40,8 @@ function createDataSources(cache: any) {
             pool: {
                 maxConnectionLifetimeMillis: 5 * 60_000, // 5 minutes
                 maxConnectionLifetimeJitterMillis: 60_000, // up to +1 minute random
+                min: 0,
+                max: 7,
             },
         };
         return {
