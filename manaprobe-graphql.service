@@ -1,15 +1,15 @@
 [Unit]
-Description=ManaGuide-graphql systemd service
+Description=Manaprobe-graphql systemd service
 After=network-online.target
 
 [Service]
 ExecStart=/usr/bin/npm run dev
-WorkingDirectory=/path/to/managuide-graphql
+WorkingDirectory=/path/to/manaprobe-graphql
 RestartSec=10
 Restart=always
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=managuide-graphql
+SyslogIdentifier=manaprobe-graphql
 
 [Install]
 WantedBy=multi-user.target

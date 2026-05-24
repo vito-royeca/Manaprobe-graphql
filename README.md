@@ -1,2 +1,2 @@
-# ManaGuide-graphql
-GraphQL API server for Mana Guide
+# Manaprobe-graphql
+GraphQL API server for Manaprobe
