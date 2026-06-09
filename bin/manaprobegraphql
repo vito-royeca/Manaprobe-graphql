@@ -13,7 +13,7 @@ PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin"
 
 name="manaprobegraphql"
 workdir="/var/db/Manaprobe-graphql"
-npm_cmd="/usr/local/bin/npm run start &"
+npm_cmd="/usr/local/bin/npm run dev &"
 
 start_cmd="${name}_start"
 stop_cmd=":"
