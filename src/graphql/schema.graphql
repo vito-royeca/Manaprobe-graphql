@@ -253,6 +253,7 @@ Queries
 
 type Query {
     set(input: SetByIDInput): MGSet
+
     sets: MGSets
     setTypes: MGSetType
     setsByName: MGSectionedSets
@@ -262,6 +263,8 @@ type Query {
     card(id: String!): MGCard
     cardPrintings(id: String!, languageID: String!): MGCards
     cardsByIDs(ids: [String!]!): MGCards
+
+    search(query: String!): [MGCard]
 
     feeds: MGFeeds
 }

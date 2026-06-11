@@ -22,6 +22,7 @@ import { CardsSQLDataSource } from "./datasources/CardsSQLDataSource";
 import { CardsRESTDataSource } from "./datasources/CardsRESTDataSource";
 import { FeedsDataSource } from "./datasources/FeedsDataSource";
 import { resolvers } from "./resolvers";
+import { SearchRESTDataSource } from "./datasources/SearchRESTDataSource";
 import { SetsRESTDataSource } from "./datasources/SetsRESTDataSource";
 import { SetsSQLDataSource } from "./datasources/SetsSQLDataSource";
 
@@ -56,6 +57,7 @@ function createDataSources(cache: any) {
             dataSources: {
                 cardsDataSource: new CardsRESTDataSource({ cache }),
                 feedsDataSource: new FeedsDataSource(),
+                searchDataSource: new SearchRESTDataSource({ cache }),
                 setsDataSource: new SetsRESTDataSource({ cache }),
             },
         };

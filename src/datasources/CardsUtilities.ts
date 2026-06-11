@@ -2,7 +2,7 @@ import camelcaseKeys from "camelcase-keys";
 
 import fs  from "fs";
 
-import { MGCard, MGCards, MGSet, MGSets } from "../types";
+import { MGCard, MGCards, MGSet } from "../types";
 
 export class CardsUtilities {
     card = (data: any): MGCard => {
@@ -22,6 +22,17 @@ export class CardsUtilities {
             count: cardsData.length,
             cards: cardsData
         };
+    }
+
+    search = (data: any[]): MGCard[] => {
+        let cardsData: MGCard[] = [];
+        cardsData.forEach((card, _) => {
+            let cardData = camelcaseKeys(card, { deep: true });
+            this.formatCard(cardData, cardData.set, cardData.language?.code);
+            cardsData.push(cardData);
+        });
+        
+        return cardsData;
     }
 
     cardArray = (data: any[]): MGCards => {

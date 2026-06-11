@@ -1,10 +1,9 @@
 import camelcaseKeys from "camelcase-keys";
 
 import { CardsUtilities } from "./CardsUtilities";
-import { MGCard, MGSectionedSet, MGSectionedSets, MGSet, MGSets } from "../types";
+import { MGSectionedSet, MGSectionedSets, MGSet, MGSets } from "../types";
 
 export class SetsUtilities {
-
     set = (data: any, language = "en"): MGSet => {
         const setData = camelcaseKeys(data, { deep: true });
         let set = Array.isArray(setData) ? setData[0] : setData;

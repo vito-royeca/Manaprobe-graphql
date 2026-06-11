@@ -2,12 +2,15 @@ import { Resolvers } from "./types";
 
 export const resolvers: Resolvers = {
   Query: {
+    // Set
     set: (_, { input }, { dataSources }) => {
       if (!input) {
           throw new Error("input is required");
       }
       return dataSources.setsDataSource.set(input);
     },
+
+    // Sets
     sets: (_, __, { dataSources }) => {
       return dataSources.setsDataSource.sets();
     },
@@ -21,6 +24,7 @@ export const resolvers: Resolvers = {
       return dataSources.setsDataSource.setsByYear();
     },
     
+    // Cards
     card: (_, { id }, { dataSources }) => {
       return dataSources.cardsDataSource.card(id);
     },
@@ -33,6 +37,12 @@ export const resolvers: Resolvers = {
       return dataSources.cardsDataSource.cardsByIDs(ids);
     },
 
+    // Search
+    search: (_, { query }, { dataSources }) => {
+      return dataSources.searchDataSource.search(query);
+    },
+
+    // Feeds
     feeds: (_, __, { dataSources }) => {
       return dataSources.feedsDataSource.feeds();
     },
