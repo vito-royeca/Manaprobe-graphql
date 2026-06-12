@@ -13,7 +13,7 @@ export class SearchSQLDataSource extends BatchedSQLDataSource {
     async search(query: string): Promise<MGCards> {
         try {
             const params = [query, "name", "asc"];
-            const sql = "SELECT * from searchCards($1,$2,$3)";
+            const sql = "SELECT * from searchCards(?,?,?)";
             const data = await this.db.query
                 .raw(sql, params)
             const rows = data.rows;
@@ -23,7 +23,7 @@ export class SearchSQLDataSource extends BatchedSQLDataSource {
             }
             return this.utilities.cardArray(rows);
         } catch (error) {
-            console.error("Error executing raw SQL query:", error);
+            console.error("Error executing raw SQL query: ", error);
             throw error;
         }
     }

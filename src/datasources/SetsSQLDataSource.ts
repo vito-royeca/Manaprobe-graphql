@@ -34,7 +34,7 @@ export class SetsSQLDataSource extends BatchedSQLDataSource {
                 return utilities.set(setsData, input.languageID);
             }
         } catch (error) {
-            console.error("Error executing raw SQL query:", error);
+            console.error("Error executing raw SQL query: ", error);
             throw error;
         }
     }
@@ -44,7 +44,7 @@ export class SetsSQLDataSource extends BatchedSQLDataSource {
             .select("*")
             .from("matv_cmsets")
             .cache(10);
-        
+
         return this.utilities.sets(data);
     }
 

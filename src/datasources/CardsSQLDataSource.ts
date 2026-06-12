@@ -17,13 +17,13 @@ export class CardsSQLDataSource extends BatchedSQLDataSource {
             const data = await this.db.query
                 .raw(sql, params)
             const rows = data.rows && data.rows.length >= 1 ? data.rows[0] : undefined;
-            
+
             if (rows === undefined) {
                 throw new Error(`Card with ID ${id} not found`);
             }
             return this.utilities.card(rows);
         } catch (error) {
-            console.error("Error executing raw SQL query:", error);
+            console.error("Error executing raw SQL query: ", error);
             throw error;
         }
     }
@@ -41,7 +41,7 @@ export class CardsSQLDataSource extends BatchedSQLDataSource {
             }
             return this.utilities.cardArray(rows);
         } catch (error) {
-            console.error("Error executing raw SQL query:", error);
+            console.error("Error executing raw SQL query: ", error);
             throw error;
         }
     }
@@ -60,7 +60,7 @@ export class CardsSQLDataSource extends BatchedSQLDataSource {
             }
             return this.utilities.cardArray(rows);
         } catch (error) {
-            console.error("Error executing raw SQL query:", error);
+            console.error("Error executing raw SQL query: ", error);
             throw error;
         }
     }
