@@ -24,16 +24,19 @@ export class CardsUtilities {
         };
     }
 
-    search = (data: any[]): MGCard[] => {
-        let cardsData: MGCard[] = [];
-        cardsData.forEach((card, _) => {
-            let cardData = camelcaseKeys(card, { deep: true });
-            this.formatCard(cardData, cardData.set, cardData.language?.code);
-            cardsData.push(cardData);
-        });
+    // search = (data: any[]): MGCards => {
+    //     let cardsData: MGCard[] = [];
+    //     data.forEach((card, _) => {
+    //         let cardData = camelcaseKeys(card, { deep: true });
+    //         this.formatCard(cardData, cardData.set, cardData.language?.code);
+    //         cardsData.push(cardData);
+    //     });
         
-        return cardsData;
-    }
+    //     return {
+    //         count: cardsData.length,
+    //         cards: cardsData
+    //     };
+    // }
 
     cardArray = (data: any[]): MGCards => {
         let cardsData: any[] = [];

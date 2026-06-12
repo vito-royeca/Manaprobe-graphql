@@ -7,9 +7,9 @@ export class SearchRESTDataSource extends RESTDataSource {
     baseURL = "https://managuideapp.com/";
     utilities = new CardsUtilities();
 
-    async search(query: string): Promise<MGCard[]> {
-        const data = await this.get<MGCard[]>(`search/${query}?json=true`);
+    async search(query: string): Promise<MGCards> {
+        const data = await this.get<MGCard[]>(`search?query=${query}&json=true`);
 
-        return this.utilities.search(data);
+        return this.utilities.cardArray(data);
     }    
 }

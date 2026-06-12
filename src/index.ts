@@ -23,6 +23,7 @@ import { CardsRESTDataSource } from "./datasources/CardsRESTDataSource";
 import { FeedsDataSource } from "./datasources/FeedsDataSource";
 import { resolvers } from "./resolvers";
 import { SearchRESTDataSource } from "./datasources/SearchRESTDataSource";
+import { SearchSQLDataSource } from "./datasources/SearchSQLDataSource";
 import { SetsRESTDataSource } from "./datasources/SetsRESTDataSource";
 import { SetsSQLDataSource } from "./datasources/SetsSQLDataSource";
 
@@ -48,6 +49,7 @@ function createDataSources(cache: any) {
         return {
             dataSources: {
                 cardsDataSource: new CardsSQLDataSource({ knexConfig, cache }),
+                searchDataSource: new SearchSQLDataSource({ knexConfig, cache }),
                 feedsDataSource: new FeedsDataSource(),
                 setsDataSource: new SetsSQLDataSource({ knexConfig, cache }),
             },

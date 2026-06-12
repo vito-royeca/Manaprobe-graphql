@@ -4,242 +4,239 @@ scalar DateTime
 """
 Types
 """
-
 type MGArtist {
-    firstName: String
-    info: String
-    lastName: String
-    name: String!
+  firstName: String
+  info: String
+  lastName: String
+  name: String!
 }
 
 type MGCard {
-    arenaId: String
-    artCropUrl: String
-    cmc: Int
-    collectorNumber: String
-    displayManaCost: String
-    displayName: String
-    displayPowerToughness: String
-    displayTypeLine: String
-    faceOrder: Int
-    flavorText: String
-    handModifier: String
-    isBooster: Boolean
-    isDigital: Boolean
-    isFoil: Boolean
-    isFullArt: Boolean
-    isHighresImage: Boolean
-    isNonfoil: Boolean
-    isOversized: Boolean
-    isPromo: Boolean
-    isReprint: Boolean
-    isReserved: Boolean
-    isStorySpotlight: Boolean
-    isTextless: Boolean
-    keyruneColor: String
-    lifeModifier: String
-    loyalty: String
-    manaCost: String
-    mtgoFoilId: String
-    mtgoId: String
-    multiverseIds: [Int!]
-    numberOrder: Float
-    name: String
-    newId: String!
-    normalUrl: String
-    oracleText: String
-    pngUrl: String
-    power: String
-    printedName: String
-    printedText: String
-    printedTypeLine: String
-    releasedAt: DateTime
-    tcgplayerId: Int
-    toughness: String
-    typeLine: String
-    
-    artists: [MGArtist!]!
-    colors: [MGColor!]!
-    colorIdentities: [MGColor!]!
-    colorIndicators: [MGColor!]!
-    componentParts: [MGCardComponent!]!
-    faces: [MGCard!]!
-    formatLegalities: [MGCardFormatLegality!]!
-    frame: MGFrame
-    frameEffects: [MGFrameEffect!]!
-    language: MGLanguage
-    layout: MGLayout
-    otherLanguages: [MGCard!]!
-    otherPrintings: [MGCard!]!
-    prices: [MGCardPrice!]
-    rarity: MGRarity
-    rulings: [MGRuling!]
-    set: MGSet
-    subtypes: [MGCardType!]!
-    supertypes: [MGCardType!]
-    variations: [MGCard!]!
-    watermark: MGWatermark
+  arenaId: String
+  artCropUrl: String
+  cmc: Int
+  collectorNumber: String
+  displayManaCost: String
+  displayName: String
+  displayPowerToughness: String
+  displayTypeLine: String
+  faceOrder: Int
+  flavorText: String
+  handModifier: String
+  isBooster: Boolean
+  isDigital: Boolean
+  isFoil: Boolean
+  isFullArt: Boolean
+  isHighresImage: Boolean
+  isNonfoil: Boolean
+  isOversized: Boolean
+  isPromo: Boolean
+  isReprint: Boolean
+  isReserved: Boolean
+  isStorySpotlight: Boolean
+  isTextless: Boolean
+  keyruneColor: String
+  lifeModifier: String
+  loyalty: String
+  manaCost: String
+  mtgoFoilId: String
+  mtgoId: String
+  multiverseIds: [Int!]
+  numberOrder: Float
+  name: String
+  newId: String!
+  normalUrl: String
+  oracleText: String
+  pngUrl: String
+  power: String
+  printedName: String
+  printedText: String
+  printedTypeLine: String
+  releasedAt: DateTime
+  tcgplayerId: Int
+  toughness: String
+  typeLine: String
+
+  artists: [MGArtist!]!
+  colors: [MGColor!]!
+  colorIdentities: [MGColor!]!
+  colorIndicators: [MGColor!]!
+  componentParts: [MGCardComponent!]!
+  faces: [MGCard!]!
+  formatLegalities: [MGCardFormatLegality!]!
+  frame: MGFrame
+  frameEffects: [MGFrameEffect!]!
+  language: MGLanguage
+  layout: MGLayout
+  otherLanguages: [MGCard!]!
+  otherPrintings: [MGCard!]!
+  prices: [MGCardPrice!]
+  rarity: MGRarity
+  rulings: [MGRuling!]
+  set: MGSet
+  subtypes: [MGCardType!]!
+  supertypes: [MGCardType!]
+  variations: [MGCard!]!
+  watermark: MGWatermark
 }
 
 type MGCardComponent {
-    card: MGCard!
-    component: MGComponent!
+  card: MGCard!
+  component: MGComponent!
 }
 
 type MGCardFormatLegality {
-    format: MGFormat!
-    legality: MGLegality!
+  format: MGFormat!
+  legality: MGLegality!
 }
 
 type MGCardPrice {
-    id: Int!
-    low: Float
-    median: Float
-    high: Float
-    market: Float
-    directLow: Float
-    isFoil: Boolean
-    dateUpdated: DateTime
+  id: Int!
+  low: Float
+  median: Float
+  high: Float
+  market: Float
+  directLow: Float
+  isFoil: Boolean
+  dateUpdated: DateTime
 }
 
 type MGCardType {
-    name: String!
-    parent: MGCardType
+  name: String!
+  parent: MGCardType
 }
 
 type MGColor {
-    name: String!
-    symbol: String!
+  name: String!
+  symbol: String!
 }
 
 type MGComponent {
-    name: String!
+  name: String!
 }
 
 type MGFormat {
-    name: String!
+  name: String!
 }
 
 type MGFrame {
-    description: String
-    name: String!
+  description: String
+  name: String!
 }
 
 type MGFrameEffect {
-    description: String
-    name: String!
+  description: String
+  name: String!
 }
 
 type MGLanguage {
-    code: String!
-    displayCode: String
-    name: String!
+  code: String!
+  displayCode: String
+  name: String!
 }
 
 type MGLayout {
-    code: String!
-    description: String
-    name: String!
+  code: String!
+  description: String
+  name: String!
 }
 
 type MGLegality {
-    name: String!
+  name: String!
 }
 
 type MGRarity {
-    name: String!
+  name: String!
 }
 
 type MGRule {
-    definition: String!
-    id: Int!
-    order: Float!
-    parent: MGRule
-    term: String!
+  definition: String!
+  id: Int!
+  order: Float!
+  parent: MGRule
+  term: String!
 }
 
 type MGRuling {
-    datePublished: Date!
-    id: Int!
-    text: String!
+  datePublished: Date!
+  id: Int!
+  text: String!
 }
 
 type MGSet {
-    bigLogoURL: String
-    cardCount: Int
-    code: String!
-    isFoilOnly: Boolean!
-    isOnlineOnly: Boolean!
-    keyruneUnicode: String!
-    keyruneClass: String!
-    logoCode: String
-    mtgoCode: String
-    name: String!
-    releaseDate: String!
-    smallLogoURL: String
-    tcgplayerId: Int!
-    yearSection: String!
-    cards: [MGCard!]!
-    children: [MGSet!]!
-    setParent: MGSet
-    setBlock: MGSetBlock
-    setType: MGSetType!
-    languages: [MGLanguage!]!
+  bigLogoURL: String
+  cardCount: Int
+  code: String!
+  isFoilOnly: Boolean!
+  isOnlineOnly: Boolean!
+  keyruneUnicode: String!
+  keyruneClass: String!
+  logoCode: String
+  mtgoCode: String
+  name: String!
+  releaseDate: String!
+  smallLogoURL: String
+  tcgplayerId: Int!
+  yearSection: String!
+  cards: [MGCard!]!
+  children: [MGSet!]!
+  setParent: MGSet
+  setBlock: MGSetBlock
+  setType: MGSetType!
+  languages: [MGLanguage!]!
 }
 
 type MGSetType {
-    name: String!
+  name: String!
 }
 
 type MGSetBlock {
-    name: String!
-    code: String!
+  name: String!
+  code: String!
 }
 
 type MGWatermark {
-    name: String!
+  name: String!
 }
 
 type MGFeed {
-    title: String!
-    url: String!
+  title: String!
+  url: String!
 }
 
 """
 Results
 """
-
 type MGSets {
-    count: Int!
-    sets: [MGSet!]!
+  count: Int!
+  sets: [MGSet!]!
 }
 
 type MGSectionedSet {
-    count: Int!
-    section: String!
-    sets: [MGSet!]!
+  count: Int!
+  section: String!
+  sets: [MGSet!]!
 }
 
 type MGSectionedSets {
-    count: Int!
-    sections: [String!]!
-    sectionedSets: [MGSectionedSet!]!
+  count: Int!
+  sections: [String!]!
+  sectionedSets: [MGSectionedSet!]!
 }
 
 type MGCards {
-    count: Int!
-    cards: [MGCard!]!
+  count: Int!
+  cards: [MGCard!]!
 }
 
 type MGFeeds {
-    count: Int!
-    feeds: [MGFeed!]!
+  count: Int!
+  feeds: [MGFeed!]!
 }
 
 """
 Inputs
 """
-
 input SetByIDInput {
   setID: String!
   languageID: String!
@@ -250,21 +247,20 @@ input SetByIDInput {
 """
 Queries
 """
-
 type Query {
-    set(input: SetByIDInput): MGSet
+  set(input: SetByIDInput): MGSet
 
-    sets: MGSets
-    setTypes: MGSetType
-    setsByName: MGSectionedSets
-    setsByType: MGSectionedSets
-    setsByYear: MGSectionedSets
+  sets: MGSets
+  setTypes: MGSetType
+  setsByName: MGSectionedSets
+  setsByType: MGSectionedSets
+  setsByYear: MGSectionedSets
 
-    card(id: String!): MGCard
-    cardPrintings(id: String!, languageID: String!): MGCards
-    cardsByIDs(ids: [String!]!): MGCards
+  card(id: String!): MGCard
+  cardPrintings(id: String!, languageID: String!): MGCards
+  cardsByIDs(ids: [String!]!): MGCards
 
-    search(query: String!): [MGCard]
+  search(query: String!): MGCards
 
-    feeds: MGFeeds
+  feeds: MGFeeds
 }

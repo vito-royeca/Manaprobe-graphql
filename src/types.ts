@@ -281,7 +281,7 @@ export type Query = {
   cardPrintings?: Maybe<MGCards>;
   cardsByIDs?: Maybe<MGCards>;
   feeds?: Maybe<MGFeeds>;
-  search?: Maybe<Array<Maybe<MGCard>>>;
+  search?: Maybe<MGCards>;
   set?: Maybe<MGSet>;
   setTypes?: Maybe<MGSetType>;
   sets?: Maybe<MGSets>;
@@ -717,7 +717,7 @@ export type QueryResolvers<ContextType = DataSourceContext, ParentType extends R
   cardPrintings?: Resolver<Maybe<ResolversTypes['MGCards']>, ParentType, ContextType, RequireFields<QuerycardPrintingsArgs, 'id' | 'languageID'>>;
   cardsByIDs?: Resolver<Maybe<ResolversTypes['MGCards']>, ParentType, ContextType, RequireFields<QuerycardsByIDsArgs, 'ids'>>;
   feeds?: Resolver<Maybe<ResolversTypes['MGFeeds']>, ParentType, ContextType>;
-  search?: Resolver<Maybe<Array<Maybe<ResolversTypes['MGCard']>>>, ParentType, ContextType, RequireFields<QuerysearchArgs, 'query'>>;
+  search?: Resolver<Maybe<ResolversTypes['MGCards']>, ParentType, ContextType, RequireFields<QuerysearchArgs, 'query'>>;
   set?: Resolver<Maybe<ResolversTypes['MGSet']>, ParentType, ContextType, Partial<QuerysetArgs>>;
   setTypes?: Resolver<Maybe<ResolversTypes['MGSetType']>, ParentType, ContextType>;
   sets?: Resolver<Maybe<ResolversTypes['MGSets']>, ParentType, ContextType>;
