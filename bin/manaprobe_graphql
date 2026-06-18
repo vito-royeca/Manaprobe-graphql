@@ -1,17 +1,17 @@
 #!/bin/sh
 
-# PROVIDE: manaprobegraphql
+# PROVIDE: manaprobe_graphql
 # REQUIRE: LOGIN cleanvar
 # KEYWORD: shutdown
 
 # Put this script in /usr/local/etc/rc.d and make it executable. Then add
-# "manaprobegraphql_enable=YES" to /etc/rc.conf to enable it
+# "manaprobe_graphql_enable=YES" to /etc/rc.conf to enable it
 
 PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin"
 
 . /etc/rc.subr
 
-name="manaprobegraphql"
+name="manaprobe_graphql"
 workdir="/var/db/Manaprobe-graphql"
 npm_cmd="/usr/local/bin/npm run dev &"
 
@@ -20,7 +20,7 @@ stop_cmd=":"
 
 : ${dummy_svcj_options:=""}
 
-manaprobegraphql_start()
+manaprobe_graphql_start()
 {
        su -m www -c "cd ${workdir} && ${npm_cmd}"
 }
