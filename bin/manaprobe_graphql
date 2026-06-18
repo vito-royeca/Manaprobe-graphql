@@ -5,7 +5,11 @@
 # KEYWORD: shutdown
 
 # Put this script in /usr/local/etc/rc.d and make it executable. Then add
-# "manaprobe_graphql_enable=YES" to /etc/rc.conf to enable it
+# "manaprobe_graphql_enable=YES" to /etc/rc.conf to enable it, i.e.:
+# `cp bin/manaprobe_graphql /usr/local/etc/rc.d/manaprobe_graphql`
+# `chmod a+x /usr/local/etc/rc.d/manaprobe_graphql`
+# `service manaprobe_graphql enable`
+# To start the service, run "service manaprobe_graphql start" or reboot the system.
 
 PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin"
 
